@@ -42,10 +42,36 @@ app.get('/movies/:id', (req, res) => {
   Movie.findById(req.params.id, (err, foundMovie) => {
     res.render('show.ejs', {
       movie: foundMovie
-    });
+    })
+  })
+})
+//new
+app.get('/movies/new', (req, res) => {
+  res.render('new.ejs')
+})
+//edit
+app.get('/movies/edit/:id', (req, res) => {
+  Movie.findById(req.params.id, (err, foundMovie) => {
+    res.render('edit.ejs', {
+      movie: foundMovie
+    })
+  })
+})
+app.put('/movies/:id', (req, res) => {
+  Movie.findByIdAndUpdate(req.params.id, req.body, {
+    new: true
+  }, (err, updatedReview) => {
+    // console.log(updatedReview)
+    res.redirect('/movies')
+  })
+})
+
+//DELETE
+app.delete('/movies/:id', (req, res) => {
+  Movie.findByIdAndRemove(req.params.id, (err, deleteMovie) => {
+    res.redirect('/movies')
   });
 });
-
 //Port
 // Allow use of Heroku's port or your own local port, depending on the environment
 const PORT = process.env.PORT

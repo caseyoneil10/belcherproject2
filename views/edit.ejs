@@ -3,6 +3,18 @@
 <%- include ('./partials/head.ejs') %>
 
   <body>
+    <div class="container">
 
+      <h1><%=movie.title%></h1><br><br>
+      <h2><%=movie.author%></h2>
+      <img src="<%=movie.image%>" width='250px' height='350px' alt="<%=movie.title%>"><br><br>
+      <form action="/movies/<%=movie.id%>?_method=PUT" method="POST">
+        <input type="text" name="review" placeholder="Add a Review"><br>
+        <input type="submit" value="SUBMIT">
+      </form>
+      <form action="/movies">
+        <button type="submit">Back to Home</button>
+      </form>
+    </div>
   </body>
 </html>
