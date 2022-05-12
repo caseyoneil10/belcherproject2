@@ -1,0 +1,19 @@
+input {
+  resize: horizontal;
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+/* input:active {
+  width: auto;
+}
+
+input:focus {
+  min-width: 100%;
+} */
+
+img {
+  border-radius: 6px;
+}
