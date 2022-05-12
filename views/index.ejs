@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<%- include ('./partials/head.ejs') %>
+
+  <body>
+    <div class="container">
+
+        <h1>Movie Tracker</h1><br><br>
+        <% for (let i = 0; i < movies.length; i++) { %>
+        <a href="/movies/<%=movies[i].id%>"><img src="<%=movies[i].image%>" width='150px' height='250px' alt="<%=movies[i].title%>"></a>
+        <% } %>
+      </div>  </body>
+</html>
