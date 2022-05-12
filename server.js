@@ -26,7 +26,9 @@ app.get('/movies/seed', (req, res) => {
   res.redirect('/movies')
 })
 
-
+app.get('/', (req, res) => {
+  res.redirect('/movies')
+})
 // Routes
 //localhost:3000
 
