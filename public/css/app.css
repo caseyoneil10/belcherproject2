@@ -17,3 +17,9 @@ input:focus {
 img {
   border-radius: 6px;
 }
+
+.addNew {
+  display: block;
+  margin-right: 10em;
+  color: red;
+}

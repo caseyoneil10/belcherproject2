@@ -1,8 +1,8 @@
 //Dependencies
 const express = require('express')
-const methodOverride  = require('method-override')
-const mongoose = require ('mongoose')
-const app = express ()
+const methodOverride = require('method-override')
+const mongoose = require('mongoose')
+const app = express()
 const db = mongoose.connection
 const seedData = require('./models/data.js')
 const Movie = require('./models/movieschema.js')
@@ -12,45 +12,48 @@ require('dotenv').config()
 //use public folder for static assets
 app.use(express.static('public'))
 // populates req.body with parsed info from forms - if no data from forms will return an empty object {}
-app.use(express.urlencoded({ extended: false }))// extended: false - does not allow nested objects in query strings
-app.use(express.json())// returns middleware that only parses JSON - may or may not need it depending on your project
+app.use(express.urlencoded({
+  extended: false
+})) // extended: false - does not allow nested objects in query strings
+app.use(express.json()) // returns middleware that only parses JSON - may or may not need it depending on your project
 //use method override
-app.use(methodOverride('_method'))// allow POST, PUT and DELETE from a form
+app.use(methodOverride('_method')) // allow POST, PUT and DELETE from a form
 
-//seed
-app.get('/movies/seed', (req, res) => {
-  Movie.create(seedData, (err, createData) => {
-    console.log(err);
-    console.log('seed data registered')
-  })
-  res.redirect('/movies')
-})
 
+//REDIRECT
+//Redirects page to /movies (index) on initial load
 app.get('/', (req, res) => {
   res.redirect('/movies')
 })
-// Routes
-//localhost:3000
 
-//new
+//NEW
+//allows creating of new entries to DB
 app.post('/movies', (req, res) => {
   Movie.create(req.body, (error, createdMovie) => {
     res.redirect('/movies');
   })
 })
-//index
+//render new.ejs
+app.get('/movies/new', (req, res) => {
+  res.render('new.ejs')
+})
+
+//INDEX
+//THIS WAS HELPFUL IN FIGURING OUT HOW TO SORT
+//https://stackoverflow.com/questions/5825520/in-mongoose-how-do-i-sort-by-date-node-js/15081087#15081087
+//find all data in DB and sort by "title". Sort data stored in "allMovies" where it can they be referenced in the index.ejs with "movies"
+//Collation ignores case sensitivity which would break alpha sorting.
 app.get('/movies', (req, res) => {
-  Movie.find({}, (error, allMovies) => {
+  Movie.find({}).collation({
+    'locale': 'en'
+  }).sort('title').exec((error, allMovies) => {
     res.render('index.ejs', {
       movies: allMovies
     })
   })
 })
-//new
-app.get('/movies/new', (req, res) => {
-  res.render('new.ejs')
-})
-//edit
+
+//EDIT
 app.get('/movies/edit/:id', (req, res) => {
   Movie.findById(req.params.id, (err, foundMovie) => {
     res.render('edit.ejs', {
@@ -58,16 +61,8 @@ app.get('/movies/edit/:id', (req, res) => {
     })
   })
 })
-//show
-app.get('/movies/:id', (req, res) => {
-  Movie.findById(req.params.id, (err, foundMovie) => {
-    res.render('show.ejs', {
-      movie: foundMovie
-    })
-  })
-})
 
-
+//Update existing entry
 app.put('/movies/:id', (req, res) => {
   Movie.findByIdAndUpdate(req.params.id, req.body, {
     new: true
@@ -77,12 +72,34 @@ app.put('/movies/:id', (req, res) => {
   })
 })
 
+//SHOW
+//Show page for each specific entry clicked
+app.get('/movies/:id', (req, res) => {
+  Movie.findById(req.params.id, (err, foundMovie) => {
+    res.render('show.ejs', {
+      movie: foundMovie
+    })
+  })
+})
+
 //DELETE
+//delete existing entry
 app.delete('/movies/:id', (req, res) => {
   Movie.findByIdAndRemove(req.params.id, (err, deleteMovie) => {
     res.redirect('/movies')
-  });
-});
+  })
+})
+
+//SEED
+//seed basic data for troubleshooting. Finished version will not have pre-populated data.
+app.get('/movies/seed', (req, res) => {
+  Movie.create(seedData, (err, createData) => {
+    console.log(err);
+    console.log('seed data registered')
+  })
+  res.redirect('/movies')
+})
+
 //Port
 // Allow use of Heroku's port or your own local port, depending on the environment
 const PORT = process.env.PORT
@@ -95,7 +112,7 @@ const MONGODB_URI = process.env.MONGODB_URI
 // Fix Depreciation Warnings from Mongoose
 // May or may not need these depending on your Mongoose version
 mongoose.connect(MONGODB_URI, () => {
-    console.log('connected to mongo')
+  console.log('connected to mongo')
 })
 
 // Error / success
@@ -104,4 +121,4 @@ db.on('connected', () => console.log('mongo connected: ', MONGODB_URI))
 db.on('disconnected', () => console.log('mongo disconnected'))
 
 //Listener
-app.listen(PORT, () => console.log( 'Listening on port:', PORT))
+app.listen(PORT, () => console.log('Listening on port:', PORT))
