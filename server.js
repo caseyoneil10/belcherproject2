@@ -29,19 +29,18 @@ app.get('/movies/seed', (req, res) => {
 
 // Routes
 //localhost:3000
+
+//new
+app.post('/movies', (req, res) => {
+  Movie.create(req.body, (error, createdMovie) => {
+    res.redirect('/movies');
+  })
+})
 //index
 app.get('/movies', (req, res) => {
   Movie.find({}, (error, allMovies) => {
     res.render('index.ejs', {
       movies: allMovies
-    })
-  })
-})
-//show
-app.get('/movies/:id', (req, res) => {
-  Movie.findById(req.params.id, (err, foundMovie) => {
-    res.render('show.ejs', {
-      movie: foundMovie
     })
   })
 })
@@ -57,6 +56,16 @@ app.get('/movies/edit/:id', (req, res) => {
     })
   })
 })
+//show
+app.get('/movies/:id', (req, res) => {
+  Movie.findById(req.params.id, (err, foundMovie) => {
+    res.render('show.ejs', {
+      movie: foundMovie
+    })
+  })
+})
+
+
 app.put('/movies/:id', (req, res) => {
   Movie.findByIdAndUpdate(req.params.id, req.body, {
     new: true
