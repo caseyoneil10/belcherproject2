@@ -7,7 +7,7 @@ const db = mongoose.connection
 const seedData = require('./models/data.js')
 // const Movie = require('./models/movieschema.js')
 const moviesController = require('./controllers/movies.js');
-
+const userController = require('./controllers/users_controller.js')
 require('dotenv').config()
 
 //Middleware
@@ -20,7 +20,9 @@ app.use(express.urlencoded({
 app.use(express.json()) // returns middleware that only parses JSON - may or may not need it depending on your project
 //use method override
 app.use(methodOverride('_method')) // allow POST, PUT and DELETE from a form
-app.use(moviesController);
+app.use(moviesController)
+app.use('/users', userController)
+
 
 
 
