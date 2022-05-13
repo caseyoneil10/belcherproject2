@@ -5,7 +5,9 @@ const mongoose = require('mongoose')
 const app = express()
 const db = mongoose.connection
 const seedData = require('./models/data.js')
-const Movie = require('./models/movieschema.js')
+// const Movie = require('./models/movieschema.js')
+const moviesController = require('./controllers/movies.js');
+
 require('dotenv').config()
 
 //Middleware
@@ -18,87 +20,10 @@ app.use(express.urlencoded({
 app.use(express.json()) // returns middleware that only parses JSON - may or may not need it depending on your project
 //use method override
 app.use(methodOverride('_method')) // allow POST, PUT and DELETE from a form
+app.use(moviesController);
 
 
-//REDIRECT
-//Redirects page to /movies (index) on initial load
-app.get('/', (req, res) => {
-  res.redirect('/movies')
-})
 
-//NEW
-//allows creating of new entries to DB
-app.post('/movies', (req, res) => {
-  Movie.create(req.body, (error, createdMovie) => {
-    res.redirect('/movies');
-  })
-})
-//render new.ejs
-app.get('/movies/new', (req, res) => {
-  res.render('new.ejs')
-})
-
-//INDEX
-//THIS WAS HELPFUL IN FIGURING OUT HOW TO SORT
-//https://stackoverflow.com/questions/5825520/in-mongoose-how-do-i-sort-by-date-node-js/15081087#15081087
-//find all data in DB and sort by "title". Sort data stored in "allMovies" where it can they be referenced in the index.ejs with "movies"
-//Collation ignores case sensitivity which would break alpha sorting.
-app.get('/movies', (req, res) => {
-  Movie.find({}).collation({
-    'locale': 'en'
-  }).sort('title').exec((error, allMovies) => {
-    res.render('index.ejs', {
-      movies: allMovies
-    })
-  })
-})
-
-//EDIT
-app.get('/movies/edit/:id', (req, res) => {
-  Movie.findById(req.params.id, (err, foundMovie) => {
-    res.render('edit.ejs', {
-      movie: foundMovie
-    })
-  })
-})
-
-//Update existing entry
-app.put('/movies/:id', (req, res) => {
-  Movie.findByIdAndUpdate(req.params.id, req.body, {
-    new: true
-  }, (err, updatedReview) => {
-    // console.log(updatedReview)
-    res.redirect('/movies')
-  })
-})
-
-//SHOW
-//Show page for each specific entry clicked
-app.get('/movies/:id', (req, res) => {
-  Movie.findById(req.params.id, (err, foundMovie) => {
-    res.render('show.ejs', {
-      movie: foundMovie
-    })
-  })
-})
-
-//DELETE
-//delete existing entry
-app.delete('/movies/:id', (req, res) => {
-  Movie.findByIdAndRemove(req.params.id, (err, deleteMovie) => {
-    res.redirect('/movies')
-  })
-})
-
-//SEED
-//seed basic data for troubleshooting. Finished version will not have pre-populated data.
-app.get('/movies/seed', (req, res) => {
-  Movie.create(seedData, (err, createData) => {
-    console.log(err);
-    console.log('seed data registered')
-  })
-  res.redirect('/movies')
-})
 
 //Port
 // Allow use of Heroku's port or your own local port, depending on the environment
