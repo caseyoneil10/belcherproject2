@@ -25,7 +25,7 @@ app.use(express.urlencoded({
 app.use(methodOverride('_method')) // allow POST, PUT and DELETE from a form
 app.use(
   session({
-    secret: process.env.secret, //a random string do not copy this value or your stuff will get hacked
+    secret: process.env.SECRET, //a random string do not copy this value or your stuff will get hacked
     resave: false, // default more info: https://www.npmjs.com/package/express-session#resave
     saveUninitialized: false // default  more info: https://www.npmjs.com/package/express-session#resave
   })
