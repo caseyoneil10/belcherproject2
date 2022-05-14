@@ -2,29 +2,31 @@
 <html lang="en" dir="ltr">
 <%- include ('./partials/head.ejs') %>
 
-  <body>
-    <div class="container">
+<body>
+  <div class="container">
 
-  <h1><%=movie.title%></h1>
-  <img src="<%=movie.image%>" width='250px' height='350px' alt="<%=movie.title%>"><br>
-  <%=movie.synopsis%><br><br>
-  Director: <%=movie.director%><br>
-  Genre: <%=movie.genre%><br>
-  Year: <%=movie.releaseYear%><br>
-  Length: <%=movie.length%><br>
-  Content Rating: <%=movie.contentRating%><br>
+    <h1><%=movie.title%></h1>
 
-  <h2>Reviews</h2>
-  <%=movie.review%><br><br>
-  <form action="/movies/edit/<%=movie.id%>">
-    <button type="submit">Edit Entry</button>
-  </form>
-  <form action="/movies/<%=movie.id%>?_method=DELETE" method="POST">
-    <button type="submit">Delete Entry</button>
-  </form>
-  <form action="/movies">
-    <button type="submit">BACK</button>
-  </form>
-</div>
-  </body>
+    <img src="<%=movie.image%>" width='250px' height='350px' alt="<%=movie.title%>"><br>
+    <%=movie.synopsis%><br><br>
+    Director: <%=movie.director%><br>
+    Genre: <%=movie.genre%><br>
+    Year: <%=movie.releaseYear%><br>
+    Length: <%=movie.length%><br>
+    Content Rating: <%=movie.contentRating%><br>
+
+    <h2>Reviews</h2>
+    <%=movie.review%><br><br>
+    <form action="/movies/edit/<%=movie.id%>">
+      <button type="submit">Edit Entry</button>
+    </form>
+    <form action="/movies/<%=movie.id%>?_method=DELETE" method="POST">
+      <button type="submit">Delete Entry</button>
+    </form>
+    <form action="/movies">
+      <button type="submit">Back</button>
+    </form>
+  </div>
+</body>
+
 </html>

@@ -6,9 +6,12 @@ const app = express()
 const db = mongoose.connection
 const seedData = require('./models/data.js')
 // const Movie = require('./models/movieschema.js')
+require('dotenv').config()
+const session = require('express-session')
+const sessionsController = require('./controllers/sessions_controller.js')
 const moviesController = require('./controllers/movies.js');
 const userController = require('./controllers/users_controller.js')
-require('dotenv').config()
+
 
 //Middleware
 //use public folder for static assets
@@ -20,8 +23,19 @@ app.use(express.urlencoded({
 app.use(express.json()) // returns middleware that only parses JSON - may or may not need it depending on your project
 //use method override
 app.use(methodOverride('_method')) // allow POST, PUT and DELETE from a form
+app.use(
+  session({
+    secret: process.env.SECRET, //a random string do not copy this value or your stuff will get hacked
+    resave: false, // default more info: https://www.npmjs.com/package/express-session#resave
+    saveUninitialized: false // default  more info: https://www.npmjs.com/package/express-session#resave
+  })
+)
+app.use('/sessions', sessionsController)
 app.use(moviesController)
 app.use('/users', userController)
+
+
+
 
 
 

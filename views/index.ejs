@@ -2,14 +2,24 @@
 <html lang="en" dir="ltr">
 <%- include ('./partials/head.ejs') %>
 
-  <body>
-    <div class="container">
+<body>
 
-        <h1>Movie Tracker</h1><br><br>
-        <form class="addNew" action="/movies/new">
+  <div class="container">
+    <h1>Movie Tracker</h1><br><br>
+    <h1>Hi, <%=username.currentUser.username%>, welcome to your Movie Tracker!</h1>
+    <form class="addNew" action="/movies/new">
       <button type="submit">Add a New Entry to Your Library</button>
-        <% for (let i = 0; i < movies.length; i++) { %>
-        <a href="/movies/<%=movies[i].id%>"><img src="<%=movies[i].image%>" width='150px' height='250px' alt="<%=movies[i].title%>"></a>
-        <% } %>
-      </div>  </body>
+      <% for (let i = 0; i < movies.length; i++) { %>
+      <a href="/movies/<%=movies[i].id%>"><img src="<%=movies[i].image%>" width='150px' height='250px' alt="<%=movies[i].title%>"></a>
+      <% } %>
+    </form>
+  </div>
+
+
+
+  <form action="/sessions/?_method=DELETE" method="POST">
+    <button type="submit">Log Out</button>
+  </form>
+</body>
+
 </html>
