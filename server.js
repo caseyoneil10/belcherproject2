@@ -20,17 +20,17 @@ app.use(express.static('public'))
 app.use(express.urlencoded({
   extended: false
 })) // extended: false - does not allow nested objects in query strings
-app.use(express.json()) // returns middleware that only parses JSON - may or may not need it depending on your project
+ // returns middleware that only parses JSON - may or may not need it depending on your project
 //use method override
 app.use(methodOverride('_method')) // allow POST, PUT and DELETE from a form
-app.use(cookieParser())
 app.use(
   session({
     secret: process.env.SECRET, //a random string do not copy this value or your stuff will get hacked
-    resave: false, // default more info: https://www.npmjs.com/package/express-session#resave
-    saveUninitialized: false // default  more info: https://www.npmjs.com/package/express-session#resave
+    resave: true, // default more info: https://www.npmjs.com/package/express-session#resave
+    saveUninitialized: true // default  more info: https://www.npmjs.com/package/express-session#resave
   })
 )
+app.use(express.json())
 app.use('/sessions', sessionsController)
 app.use(moviesController)
 app.use('/users', userController)
