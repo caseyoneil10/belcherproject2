@@ -4,7 +4,8 @@ const session = require('express-session')
 const Movie = require('../models/movieschema.js')
 const User = require('../models/users.js')
 const seedData = require('../models/data')
-
+const mongoose = require('mongoose')
+const toId = mongoose.Types.ObjectId
 const isAuthenticated = (req, res, next) => {
   if (req.session.currentUser) {
     return next()
@@ -32,8 +33,24 @@ router.get('/', (req, res) => {
 
 //NEW
 //allows creating of new entries to DB
+// router.post('/movies', isAuthenticated, (req, res) => {
+//   Movie.create(req.body,  (error, createdMovie) => {
+//     res.redirect('/movies');
+//   })
+// })
 router.post('/movies', isAuthenticated, (req, res) => {
-  Movie.create(req.body, (error, createdMovie) => {
+  Movie.create({
+    title: req.body.title,
+    director: req.body.director,
+    userRating: req.body.userRating,
+    genre: req.body.genre,
+    releaseYear: req.body.releaseYear,
+    image: req.body.image,
+    synopsis: req.body.synopsis,
+    review: req.body.review,
+    length: req.body.length,
+    contentRating: req.body.contentRating,
+    user: req.session.currentUser.username}, (error, createdMovie) => {
     res.redirect('/movies');
   })
 })
@@ -65,7 +82,7 @@ router.get('/movies/new', isAuthenticated, (req, res) => {
 router.get('/movies', (req, res) => {
   if (req.session.currentUser == undefined) {
     res.redirect('/users/new')} else {
-  Movie.find({}).collation({
+  Movie.find({user: req.session.currentUser.username}).collation({
     'locale': 'en'
   }).sort('title').exec((error, allMovies) => {
     res.render('index.ejs', {
