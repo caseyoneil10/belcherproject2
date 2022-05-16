@@ -106,3 +106,9 @@ width: 27%;
 .button2 {
   float: right;
 }
+.loginpage2 {
+  margin-top: 2em;
+}
+#newSession {
+  margin-top: -1.5em;
+}

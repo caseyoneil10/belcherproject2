@@ -5,18 +5,19 @@
 
 
 <body>
-  <div class="container">
-    <img id="headerLogo" src="../images/logo.png" height="50px" width="50px" alt="">
-    <h1 id="headerTitle"><a href="/">Movie Tracker</a></h1>
-    <img id="headerLogo" src="../images/logo.png" height="50px" width="50px" alt="">
-    <h1>Welcome To Movie Tracker</h1>
-    <div class="loginPage">
+  <%- include ('../partials/loginheader.ejs') %>
+
+    <div class="container">
+    <div class="loginPage loginpage2">
       <h1>Please Login in Below</h1>
       <form action="/sessions/" method="POST">
         <input type="text" name="username" placeholder="username" required>
         <input type="password" name="password" placeholder="password" required>
         <br>
-        <button>Submit</button>
+        <input type="submit" value="Submit"></input>
+      </form>
+      <form id="newSession" action="/">
+        <input type="submit" value="Create New User">
       </form>
     </div>
   </div>
