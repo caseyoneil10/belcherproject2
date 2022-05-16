@@ -2,22 +2,26 @@
 <html lang="en" dir="ltr">
 <%- include ('../partials/head.ejs') %>
 
-  <body>
-    <div class="container">
-
+<body>
+  <div class="container">
+    <img id="headerLogo" src="../images/logo.png" height="50px" width="50px" alt="">
+    <h1 id="headerTitle"><a href="/">Movie Tracker</a></h1>
+    <img id="headerLogo" src="../images/logo.png" height="50px" width="50px" alt="">
     <h1>Welcome To Movie Tracker</h1>
-    <h2>To Create an Account Enter a New Username and Password</h2>
-    <form action="/users/" method="POST">
-    	<input type="text" name="username"
-    		placeholder="Username" minlength= "5" required>
-    	<input type="password" name="password"
-    		placeholder="Password" minlength= "6" required>
-    	<button>Submit</button>
-    </form>
-    <form action="/sessions/new" method="GET">
-    	<button>If You Already Have an Account Click Here!</button>
-    </form>
+    <div class="loginPage">
+      <h4 id="create">Create an Account</h4>
+      <form action="/users/" method="POST">
+        <input type="text" name="username" placeholder="Username" minlength="5" required>
+        <input type="password" name="password" placeholder="Password" minlength="6" required> <br>
+        <input type="submit" value="Submit"></input>
+      </form>
+      <form class="bottomButton"action="/sessions/new" method="GET">
+        <input type="submit" value="Existing User"></input>
+      </form>
+    </div>
+
   </div>
 
-  </body>
+</body>
+
 </html>

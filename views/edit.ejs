@@ -3,50 +3,41 @@
 <%- include ('./partials/head.ejs') %>
 
 <body>
+  <%- include ('./partials/header.ejs') %>
+
   <div class="container">
 
-    <h1><%=movie.title%></h1><br><br>
+    <h1><%=movie.title%></h1>
     <h2><%=movie.author%></h2>
 
-    <img src="<%=movie.image%>" width='250px' height='350px' alt="<%=movie.title%>"><br><br>
-
+    <img src="<%=movie.image%>" width='250px' height='350px' alt="<%=movie.title%>">
     <form action="/movies/<%=movie.id%>?_method=PUT" method="POST">
-      Current Title
-      <input type="text" name="title" value="<%=movie.title%>" ><br>
-      Current Director
-      <input type="text" name="director" value="<%=movie.director%>" ><br>
-      Current Genre
-      <input type="text" name="genre" value="<%=movie.genre%>" ><br>
-      Current Release Year
-      <input type="text" name="releaseYear" value="<%=movie.releaseYear%>" ><br>
-
-
-      Current Synopsis
-      <textarea name="synopsis" value= "<%=movie.synopsis%>" rows="5" cols="100"><%=movie.synopsis%></textarea>
-
-
-
-
-
-      Current Length/Seasons
-      <input type="text" name="length" value="<%=movie.length%>" ><br>
-
-      Current Content Rating
-      <input type="text" name="contentRating" value="<%=movie.contenRating%>" ><br>
-
-
-      Current User Rating
-      <input type="text" name="userRating" value="<%=movie.userRating%>"><br>
-
-      Current Review
-
-      <textarea name="review" value= "<%=movie.review%>" rows="5" cols="100"><%=movie.review%></textarea>
-
-
+      <label for="">Current Title</label>
+      <input type="text" name="title" value="<%=movie.title%>"><br>
+      <label for="">Current Director</label>
+      <input type="text" name="director" value="<%=movie.director%>"><br>
+      <label for="">Current User Rating (1-10)</label>
+      <input type="range" name="userRating" min="1" max='10' value="<%=movie.userRating%>"oninput="this.nextElementSibling.value = this.value" style="padding: 0;">
+      <output></output>
+      <br>
+      <label for="">Current Genre</label>
+      <input type="text" name="genre" value="<%=movie.genre%>"><br>
+      <label for="">Current Release Year</label>
+      <input type="text" name="releaseYear" value="<%=movie.releaseYear%>"><br>
+      <label for="">Current Synopsis</label>
+      <textarea name="synopsis" value="<%=movie.synopsis%>" rows="5" cols="100"><%=movie.synopsis%></textarea>
+      <label for="">Current Length/Seasons</label>
+      <input type="text" name="length" value="<%=movie.length%>"><br>
+      <label for="">Current Content Rating</label>
+      <input type="text" name="contentRating" value="<%=movie.contenRating%>"><br>
+      <label for="">Current User Review</label>
+      <textarea name="review" value="<%=movie.review%>" rows="5" cols="100"><%=movie.review%></textarea>
+      <label for="">Current Image Link</label>
+      <textarea name="image" value="<%=movie.image%>" rows="5" cols="100"><%=movie.image%></textarea>
       <input type="submit" value="Submit Changes">
     </form>
-    <form action="/movies">
-      <button type="submit">Back to Home</button>
+    <form action="/">
+      <input type="submit" value="Cancel"></input>
     </form>
   </div>
 </body>
