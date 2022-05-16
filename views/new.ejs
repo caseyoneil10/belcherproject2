@@ -7,11 +7,11 @@
 
     <h1>Add New Entry</h1><br><br>
     <form action="/movies" method="POST">
-      <input type="text" name="title" placeholder="Title"><br>
+      <input type="text" name="title" placeholder="Title" required><br>
       <input type="text" name="director" placeholder="Director"><br>
       <input type="text" name="userRating" placeholder="Rating out of 1-10"><br>
       <input type="text" name="genre" placeholder="Genre"><br>
-      <input type="text" name="releaseYear" placeholder="Year Released"><br>
+      <input type="number" name="releaseYear" placeholder="Year Released" min="1900" max="2022"><br>
       <input type="text" name="length" placeholder="Run Time or Number of Seasons"><br>
       <input type="text" name="contentRating" placeholder="Content Rating (PG-13, TV-MA, etc.)"><br>
       <input type="text" name="image" placeholder="Image Link"><br>

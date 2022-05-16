@@ -5,7 +5,11 @@ const Movie = require('../models/movieschema.js')
 const User = require('../models/users.js')
 const seedData = require('../models/data')
 const mongoose = require('mongoose')
-const toId = mongoose.Types.ObjectId
+
+//function that checks to see if the user is logged in..
+//this variable can then be referenced in each router function
+//the "relationships and auth" markdown was a huge help to make this DRY. I started having if statements in each route function to check if logged in.
+//I did keep some of the if statements below to show the two ways of doing it.
 const isAuthenticated = (req, res, next) => {
   if (req.session.currentUser) {
     return next()
@@ -33,11 +37,9 @@ router.get('/', (req, res) => {
 
 //NEW
 //allows creating of new entries to DB
-// router.post('/movies', isAuthenticated, (req, res) => {
-//   Movie.create(req.body,  (error, createdMovie) => {
-//     res.redirect('/movies');
-//   })
-// })
+//I wanted to be able to add the user's username to the data each new data set so that it can be easily referenced and "linked" to a specific signed in user.
+//I couldn't find a way to make this DRYer and had to write out each key and where to find that information in the req.body, but it allowed me to do what I wanted!
+//req.session.currenUser.username accesses only the currently logged in user and adds to the data set.
 router.post('/movies', isAuthenticated, (req, res) => {
   Movie.create({
     title: req.body.title,
@@ -54,30 +56,24 @@ router.post('/movies', isAuthenticated, (req, res) => {
     res.redirect('/movies');
   })
 })
-//render new.ejs
+//render new.ejs, and check to see if user is logged in
 router.get('/movies/new', isAuthenticated, (req, res) => {
   res.render('new.ejs')
 })
 
 //INDEX
 //THIS WAS HELPFUL IN FIGURING OUT HOW TO SORT
-//https://stackoverflow.com/questions/5825520/in-mongoose-how-do-i-sort-by-date-node-js/15081087#15081087
+//First check to see if there is a logged in user. If none redirect to the new user create page.
+//Else, find all data sets with key "user" set to the current user's username
+//On finding that data sort by the key "title" alphabetically
+//.collation ignores case sensitivity which would break alpha sorting.
+//Below link was helpful for figuring out sorting.
+// https://stackoverflow.com/questions/5825520/in-mongoose-how-do-i-sort-by-date-node-js/15081087#15081087
+//render the index.ejs
 //find all data in DB and sort by "title". Sort data stored in "allMovies" where it can they be referenced in the index.ejs with "movies"
 //Collation ignores case sensitivity which would break alpha sorting.
-// router.get('/movies', (req, res) => {
-//   Movie.find({}).collation({
-//     'locale': 'en'
-//   }).sort('title').exec((error, allMovies) => {
-//     User.findOne({username: req.session.currentUser
-//     },
-//    (err, foundUser) => {
-//     res.render('index.ejs', {
-//       movies: allMovies,
-//       username: foundUser })
-//
-//   })
-// })
-// })
+//"allMovies" holds the found data
+//req.session hold the logged in users information for easy reference on the index page.
 
 router.get('/movies', (req, res) => {
   if (req.session.currentUser == undefined) {
@@ -98,6 +94,8 @@ router.get('/movies', (req, res) => {
 
 
 //EDIT
+//render edit page.
+//Check if user is logged in.
 router.get('/movies/edit/:id', isAuthenticated, (req, res) => {
   Movie.findById(req.params.id, (err, foundMovie) => {
     res.render('edit.ejs', {
@@ -106,6 +104,7 @@ router.get('/movies/edit/:id', isAuthenticated, (req, res) => {
   })
 })
 //Update existing entry
+//find by ID and update.
 router.put('/movies/:id', isAuthenticated, (req, res) => {
   Movie.findByIdAndUpdate(req.params.id, req.body, {
     new: true

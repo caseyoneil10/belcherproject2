@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
+<%- include ('../partials/head.ejs') %>
+
   <body>
+    <div class="container">
+
     <h1>Welcome To Movie Tracker</h1>
-    <h2>To Create an Account Enter a unique Username and Password</h2>
+    <h2>To Create an Account Enter a New Username and Password</h2>
     <form action="/users/" method="POST">
     	<input type="text" name="username"
-    		placeholder="username">
+    		placeholder="Username" minlength= "5" required>
     	<input type="password" name="password"
-    		placeholder="password">
+    		placeholder="Password" minlength= "6" required>
     	<button>Submit</button>
     </form>
     <form action="/sessions/new" method="GET">
     	<button>If You Already Have an Account Click Here!</button>
     </form>
+  </div>
+
   </body>
 </html>
