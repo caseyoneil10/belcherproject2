@@ -46,22 +46,25 @@ a {
 
 #headerTitle {
   display: inline-block;
-  letter-spacing: .2em;
-  color: #3b3a3a;
+  letter-spacing: .15em;
+  color: #222222;
 }
 #headerLogo {
   display: inline-block;
+  margin-top: 1em;
 }
 #loginTitle {
   letter-spacing: .2em;
   color: #3b3a3a;
 }
 .loginText {
-  margin: auto;
-  margin-top: 2em;
+  display: inline-block;
+  text-align: left;
   margin-bottom: 2em;
-  letter-spacing: .1em;
+  margin-right: 2em;
+  letter-spacing: .12em;
   width: 60%;
+  color: white;
 }
 .titleLogo {
   text-align: center;
@@ -82,7 +85,8 @@ hr {
   background-color: #edeef0;
   box-shadow: 0 0 5px #3b3a3a;
   border-radius: 4px;
-
+  margin-bottom: 4em;
+  border-radius: 10px;
 }
 .header {
   background-color: #edeef0;
@@ -125,4 +129,13 @@ img:hover {
 
 .welcomeText {
   letter-spacing: .1em;
+}
+.loginLanding {
+  background-color: #3b3a3a;
+  margin-top: 2em;
+  box-shadow: 0 0 10px black;
+  border-radius: 4px;
+}
+.loginHead {
+  margin-left: 1em;
 }
