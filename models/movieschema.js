@@ -1,9 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-
-
-const myObjectId = mongoose.Types.ObjectId
 const movieSchema = new Schema({
   title: {type: String, required: true},
   director: String,
