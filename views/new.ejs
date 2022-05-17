@@ -12,7 +12,7 @@
       <input type="text" name="title" placeholder="Title" required><br>
       <input type="text" name="director" placeholder="Director"><br>
       <label>User Rating</label>
-      <input type="range" name="userRating" min="1" max='10'oninput="this.nextElementSibling.value = this.value" style="padding: 0;">
+      <input type="range" name="userRating" min="1" max='10' oninput="this.nextElementSibling.value = this.value" style="padding: 0;">
       <output> </output><br>
       <input type="text" name="genre" placeholder="Genre"><br>
       <input type="number" name="releaseYear" placeholder="Year Released" min="1900" max="2022"><br>
@@ -21,12 +21,14 @@
       <input type="text" name="image" placeholder="Image Link"><br>
       <textarea name="synopsis" placeholder="Synopsis" value="" rows="5" cols="100"></textarea>
       <br>
-    <textarea name="review" placeholder="Add a review" value="" rows="5" cols="100"></textarea> <br>
+      <textarea name="review" placeholder="Add a review" value="" rows="5" cols="100"></textarea> <br>
 
 
       <input type="submit" value="Create a New Entry">
     </form>
   </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
 
 </html>
