@@ -35,13 +35,6 @@ app.use('/sessions', sessionsController)
 app.use(moviesController)
 app.use('/users', userController)
 
-
-
-
-
-
-
-
 //Port
 // Allow use of Heroku's port or your own local port, depending on the environment
 const PORT = process.env.PORT

@@ -11,7 +11,6 @@ users.get('/new', (req, res) => {
 //Checks to see if password is at least 5 characters Long
 //If we tried adding this to the schema it would always be true because bcrypt will hash it to a 10 character string. So we need to check before it hits the hashing function.
 //If stringLength > 5 hash the PW, then check to see if username is unique if not send the error.
-
 users.post('/', (req, res) => {
   let stringPw = req.body.password
   let stringLength = stringPw.length
