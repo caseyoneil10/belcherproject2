@@ -1,5 +1,3 @@
-
-
 .headerContainer {
   display: flex;
   margin: auto;
@@ -7,6 +5,7 @@
   justify-content: space-around;
   align-items: center;
 }
+
 .flexContainer {
   margin: auto;
   display: flex;
@@ -31,32 +30,36 @@ textarea {
 .img {
   border-radius: 6px;
   box-shadow: 0 0 5px black;
-
+  width: 250px;
+  height: 350px;
 }
 
-.addNew {
-  display: inline-block;
-  color: black;
-}
+
 
 a {
   text-decoration: none;
   color: black;
 }
-
+.addNew {
+  display: inline-block;
+  color: black;
+}
 #headerTitle {
   display: inline-block;
   letter-spacing: .15em;
   color: #222222;
 }
+
 #headerLogo {
   display: inline-block;
   margin-top: 1em;
 }
+
 #loginTitle {
   letter-spacing: .2em;
   color: #3b3a3a;
 }
+
 .loginText {
   display: inline-block;
   text-align: left;
@@ -66,18 +69,24 @@ a {
   width: 60%;
   color: white;
 }
+
 .titleLogo {
   text-align: center;
   background-color: #edeef0;
 }
+
 .container {
   margin: auto;
   text-align: center;
 }
-hr {
-  color: black;
-  height: 2px;
+
+.loginLanding {
+  background-color: #3b3a3a;
+  margin-top: 2em;
+  box-shadow: 0 0 10px black;
+  border-radius: 4px;
 }
+
 .loginPage {
   margin: auto;
   width: 40%;
@@ -88,54 +97,92 @@ hr {
   margin-bottom: 4em;
   border-radius: 10px;
 }
+
+.loginpage2 {
+  margin-top: 4em;
+  margin-bottom: 0;
+  padding: 2em;
+}
+
 .header {
   background-color: #edeef0;
   box-shadow: 0 0 10px black;
   color: #3b3a3a;
 }
+
 #create {
   margin-bottom: -.1em;
   color: #3b3a3a;
 }
+
+#create2 {
+  color: #3b3a3a;
+}
+
 .bottomButton {
   margin-top: -2em;
 }
-button:hover {
-  color: red;
-}
-.button {
+
+/* .button {
   display: inline;
+} */
 
-}
 .deleteEdit {
-margin: auto;
-width: 27%;
+  margin: auto;
+  width: 27%;
 }
 
-.loginpage2 {
-  margin-top: 2em;
-}
 #newSession {
   margin-top: -1.5em;
 }
-a:active, a:focus {
-  outline: none;
-}
 
-img:hover {
+img:hover, img:focus, img:active {
   border: 2px solid black;
-  outline: none;
 }
 
 .welcomeText {
   letter-spacing: .1em;
 }
-.loginLanding {
-  background-color: #3b3a3a;
-  margin-top: 2em;
-  box-shadow: 0 0 10px black;
-  border-radius: 4px;
-}
+
 .loginHead {
   margin-left: 1em;
+}
+
+a {
+  color: #1EAEDB;
+}
+
+
+@media (max-width: 1100px) {
+  .img {
+    width: 300px;
+    height: 450px;
+  }
+}
+@media (max-width: 700px) {
+  .img {
+    width: 350px;
+    height: 500px;
+  }
+  .headerContainer {
+    display: block;
+    text-align: center;
+    width: 90%;}
+    #h4Text {
+      font-size: 2.5em;
+      margin-top: -.1em;
+      margin-bottom: -.05em;
+    }
+    .addNew {
+      display: block;
+    }
+    #createButton {
+      text-align: center;
+    }
+    .deleteEdit {
+      width: 90%;
+    }
+    .showText {
+      font-size: 1.5em;
+    }
 }

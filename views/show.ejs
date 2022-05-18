@@ -7,6 +7,7 @@
 
   <div class="container">
     <h1><%=movie.title%></h1>
+    <div class="showText">
     <img class="img" src="<%=movie.image%>" width='250px' height='350px' alt="<%=movie.title%>"><br>
     <label for="">Synopsis</label>
     <%=movie.synopsis%><br><br>
@@ -17,16 +18,16 @@
     <label for="">Length</label> <%=movie.length%><br>
     <label for="">Content Rating</label> <%=movie.contentRating%><br>
     <label for="">User Review</label> <%=movie.review%><br><br>
-    <div class="deleteEdit">
-
-    <form action="/movies/edit/<%=movie.id%>">
-      <button class="button button1" type="submit">Edit Entry</button>
-    </form>
-    <form action="/movies/<%=movie.id%>?_method=DELETE" method="POST">
-      <button class="button button2" type="submit">Delete Entry</button>
-    </form>
   </div>
 
+    <div class="deleteEdit">
+      <form action="/movies/edit/<%=movie.id%>">
+        <button class="button button1" type="submit">Edit Entry</button>
+      </form>
+      <form action="/movies/<%=movie.id%>?_method=DELETE" method="POST">
+        <button class="button button2 button-primary" type="submit">Delete Entry</button>
+      </form>
+    </div>
   </div>
 </body>
 
