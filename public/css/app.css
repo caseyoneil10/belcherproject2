@@ -22,11 +22,9 @@ input {
 
 textarea {
   width: 50%;
+  height: 300px;
 }
 
-/* input:active {
-  width: auto;
-} */
 .img {
   border-radius: 6px;
   box-shadow: 0 0 5px black;
@@ -34,16 +32,16 @@ textarea {
   height: 350px;
 }
 
-
-
 a {
   text-decoration: none;
-  color: black;
+  color: rgb(65, 63, 65);
 }
+
 .addNew {
   display: inline-block;
   color: black;
 }
+
 #headerTitle {
   display: inline-block;
   letter-spacing: .15em;
@@ -123,10 +121,6 @@ a {
   margin-top: -2em;
 }
 
-/* .button {
-  display: inline;
-} */
-
 .deleteEdit {
   margin: auto;
   width: 27%;
@@ -152,37 +146,49 @@ a {
   color: #1EAEDB;
 }
 
-
 @media (max-width: 1100px) {
   .img {
     width: 300px;
     height: 450px;
   }
 }
+
 @media (max-width: 700px) {
   .img {
     width: 350px;
     height: 500px;
   }
+
   .headerContainer {
     display: block;
     text-align: center;
-    width: 90%;}
-    #h4Text {
-      font-size: 2.5em;
-      margin-top: -.1em;
-      margin-bottom: -.05em;
-    }
-    .addNew {
-      display: block;
-    }
-    #createButton {
-      text-align: center;
-    }
-    .deleteEdit {
-      width: 90%;
-    }
-    .showText {
-      font-size: 1.5em;
-    }
+    width: 90%;
+  }
+
+  #h4Text {
+    font-size: 2.5em;
+    margin-top: -.1em;
+    margin-bottom: -.05em;
+  }
+
+  .addNew {
+    display: block;
+  }
+
+  #createButton {
+    text-align: center;
+  }
+
+  .deleteEdit {
+    width: 90%;
+  }
+
+  .showText {
+    font-size: 1.5em;
+  }
+
+  .button {
+    width: 100%;
+    font-size: 1.5em;
+  }
 }

@@ -4,22 +4,20 @@
 
 <body>
   <%- include ('./partials/header.ejs') %>
-
   <div class="container">
     <h1><%=movie.title%></h1>
     <div class="showText">
-    <img class="img" src="<%=movie.image%>" width='250px' height='350px' alt="<%=movie.title%>"><br>
-    <label for="">Synopsis</label>
-    <%=movie.synopsis%><br><br>
-    <label for="">Director</label> <%=movie.director%><br>
-    <label for="">Genre</label> <%=movie.genre%><br>
-    <label for="">User Rating</label> <%=movie.userRating%><br>
-    <label for="">Release Year</label> <%=movie.releaseYear%><br>
-    <label for="">Length</label> <%=movie.length%><br>
-    <label for="">Content Rating</label> <%=movie.contentRating%><br>
-    <label for="">User Review</label> <%=movie.review%><br><br>
-  </div>
-
+      <img class="img" src="<%=movie.image%>" width='250px' height='350px' alt="<%=movie.title%>"><br>
+      <label for="">Synopsis</label>
+      <%=movie.synopsis%><br><br>
+      <label for="">Director</label> <%=movie.director%><br>
+      <label for="">Genre</label> <%=movie.genre%><br>
+      <label for="">User Rating</label> <%=movie.userRating%><br>
+      <label for="">Release Year</label> <%=movie.releaseYear%><br>
+      <label for="">Length</label> <%=movie.length%><br>
+      <label for="">Content Rating</label> <%=movie.contentRating%><br>
+      <label for="">User Review</label> <%=movie.review%><br><br>
+    </div>
     <div class="deleteEdit">
       <form action="/movies/edit/<%=movie.id%>">
         <button class="button button1" type="submit">Edit Entry</button>

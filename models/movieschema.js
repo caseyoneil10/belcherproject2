@@ -15,9 +15,5 @@ const movieSchema = new Schema({
   user: String,
 })
 
-
-
 const movieCollection = mongoose.model('Movie', movieSchema)
-
-
 module.exports = movieCollection

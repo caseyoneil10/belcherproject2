@@ -17,6 +17,8 @@ const isAuthenticated = (req, res, next) => {
     res.redirect('/users/new')
   }
 }
+//SEED
+//seed basic data for troubleshooting. Finished version will not have pre-populated data.
 
 router.get('/movies/seed', (req, res) => {
   Movie.create(seedData, (err, createData) => {
@@ -25,6 +27,7 @@ router.get('/movies/seed', (req, res) => {
   })
   res.redirect('/movies')
 })
+
 //REDIRECT
 //Redirects page to /movies (index) on initial load
 router.get('/', (req, res) => {
@@ -52,7 +55,8 @@ router.post('/movies', isAuthenticated, (req, res) => {
     review: req.body.review,
     length: req.body.length,
     contentRating: req.body.contentRating,
-    user: req.session.currentUser.username}, (error, createdMovie) => {
+    user: req.session.currentUser.username
+  }, (error, createdMovie) => {
     res.redirect('/movies');
   })
 })
@@ -77,17 +81,20 @@ router.get('/movies/new', isAuthenticated, (req, res) => {
 
 router.get('/movies', (req, res) => {
   if (req.session.currentUser == undefined) {
-    res.redirect('/users/new')} else {
-  Movie.find({user: req.session.currentUser.username}).collation({
-    'locale': 'en'
-  }).sort('title').exec((error, allMovies) => {
-    res.render('index.ejs', {
-      movies: allMovies,
-      username: req.session
+    res.redirect('/users/new')
+  } else {
+    Movie.find({
+      user: req.session.currentUser.username
+    }).collation({
+      'locale': 'en'
+    }).sort('title').exec((error, allMovies) => {
+      res.render('index.ejs', {
+        movies: allMovies,
+        username: req.session
 
+      })
     })
-  })
-}
+  }
 })
 
 
@@ -132,8 +139,6 @@ router.delete('/movies/:id', (req, res) => {
   })
 })
 
-//SEED
-//seed basic data for troubleshooting. Finished version will not have pre-populated data.
 
 
 

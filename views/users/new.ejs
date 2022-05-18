@@ -4,9 +4,7 @@
 
 <body>
   <%- include ('../partials/loginheader.ejs') %>
-
   <div class="container loginLanding">
-
     <h3 class="loginText">Easy, simple, tracking of all of your favorite movies. </h3>
     <div class="loginPage">
       <h4 id="create">Create an Account</h4>
@@ -16,13 +14,11 @@
         <input type="password" name="password" placeholder="Password" minlength="6" required> <br>
         <input class="button-primary" type="submit" value="Submit"></input>
       </form>
-      <form class="bottomButton"action="/sessions/new" method="GET">
-        <input class="button-primary"type="submit" value="Existing User"></input>
+      <form class="bottomButton" action="/sessions/new" method="GET">
+        <input class="button-primary" type="submit" value="Existing User"></input>
       </form>
     </div>
-
   </div>
-
 </body>
 
 </html>

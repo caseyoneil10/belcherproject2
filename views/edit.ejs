@@ -4,30 +4,30 @@
 
 <body>
   <div class="header">
-  <div class="titleLogo">
-    <img id="headerLogo" src="/images/logo.png" height="50px" width="50px" alt="">
-    <h1 id="headerTitle"><a href="/">Movie Tracker</a></h1>
-    <img id="headerLogo" src="/images/logo.png" height="50px" width="50px" alt="">
-  </div>
-  <div class="flexContainer">
-    <div class="headerContainer">
-      <form class="addNew" action="/">
-        <button type="submit">Home</button>
-      </form>
-      <form class="addNew" action="/movies/new">
-        <button type="submit">Add a New Entry to Your Library</button>
-      </form>
-      <form action="/sessions/?_method=DELETE" method="POST">
-        <button type="submit">Log Out</button>
-      </form>
+    <div class="titleLogo">
+      <img id="headerLogo" src="/images/logo.png" height="50px" width="50px" alt="">
+      <h1 id="headerTitle"><a id="headerTitle" href="/">Movie Tracker</a></h1>
+      <img id="headerLogo" src="/images/logo.png" height="50px" width="50px" alt="">
+    </div>
+    <div class="flexContainer">
+      <div class="headerContainer">
+        <form class="addNew" action="/">
+          <button class="button-primary" type="submit">Home</button>
+        </form>
+        <form class="addNew" action="/movies/new">
+          <button class="button-primary" type="submit">Add a New Entry to Your Library</button>
+        </form>
+        <form action="/sessions/?_method=DELETE" method="POST">
+          <button class="button-primary" type="submit">Log Out</button>
+        </form>
+      </div>
     </div>
   </div>
-  </div>
-  <div class="container">
 
+
+  <div class="container">
     <h1><%=movie.title%></h1>
     <h2><%=movie.author%></h2>
-
     <img class="img" src="<%=movie.image%>" width='250px' height='350px' alt="<%=movie.title%>">
     <form action="/movies/<%=movie.id%>?_method=PUT" method="POST">
       <label for="">Current Title</label>
@@ -35,29 +35,29 @@
       <label for="">Current Director</label>
       <input type="text" name="director" value="<%=movie.director%>"><br>
       <label for="">Current User Rating (1-10)</label>
-      <input type="range" name="userRating" min="1" max='10' value="<%=movie.userRating%>"oninput="this.nextElementSibling.value = this.value" style="padding: 0;">
+      <input type="range" name="userRating" min="1" max='10' value="<%=movie.userRating%>" oninput="this.nextElementSibling.value = this.value" style="padding: 0;">
       <output></output>
-      <br>
       <label for="">Current Genre</label>
-      <input type="text" name="genre" value="<%=movie.genre%>"><br>
+      <input type="text" name="genre" value="<%=movie.genre%>">
       <label for="">Current Release Year</label>
-      <input type="text" name="releaseYear" value="<%=movie.releaseYear%>"><br>
-      <label for="">Current Synopsis</label>
-      <textarea name="synopsis" value="<%=movie.synopsis%>" rows="5" cols="100"><%=movie.synopsis%></textarea>
+      <input type="text" name="releaseYear" value="<%=movie.releaseYear%>">
       <label for="">Current Length/Seasons</label>
-      <input type="text" name="length" value="<%=movie.length%>"><br>
+      <input type="text" name="length" value="<%=movie.length%>">
       <label for="">Current Content Rating</label>
       <input type="text" name="contentRating" value="<%=movie.contenRating%>"><br>
+      <label for="">Current Synopsis</label>
+      <textarea name="synopsis" value="<%=movie.synopsis%>" rows="5" cols="100"><%=movie.synopsis%></textarea>
       <label for="">Current User Review</label>
       <textarea name="review" value="<%=movie.review%>" rows="5" cols="100"><%=movie.review%></textarea>
       <label for="">Current Image Link</label>
-      <textarea name="image" value="<%=movie.image%>" rows="5" cols="100"><%=movie.image%></textarea>
+      <input type="text" name="image" value="<%=movie.image%>">
       <input type="submit" value="Submit Changes">
     </form>
     <form action="/">
-      <input class="button-primary"type="submit" value="Cancel"></input>
+      <input class="button-primary" type="submit" value="Cancel"></input>
     </form>
   </div>
+  
 </body>
 
 </html>
