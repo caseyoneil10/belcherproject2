@@ -11,7 +11,7 @@ https://peaceful-ravine-23440.herokuapp.com/users/new
  - **Purpose:** User can organize their favorite movies and shows and add data like a review, or update info about the film itself for easy reference in the future. They can also delete entries or create a new entry.
  - **Who:** Movie Lovers, who have a need to organize all of their favorite films for easy reference in the future.
 ## Technologies Used
- - Mongoose
+ - Mongoosecd d
  - MongoDB
  - Node.js
  - JavaScript
